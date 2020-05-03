@@ -13,18 +13,18 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 find_package(Qt5 COMPONENTS Widgets LinguistTools REQUIRED)
 
-set(TS_FILES qode_en_US.ts)
+set(TS_FILES translations/qode_en_US.ts)
 
 add_executable(qode
-    main.cpp
-    ToolBar.cpp
-    ToolBar.hpp
-    FileSystemView.cpp
-    FileSystemView.hpp
-    MainWindow.cpp
-    MainWindow.hpp
-    MainWindow.ui
-    res.qrc
+    src/main.cpp
+    src/ToolBar.cpp
+    src/ToolBar.hpp
+    src/FileSystemView.cpp
+    src/FileSystemView.hpp
+    src/MainWindow.cpp
+    src/MainWindow.hpp
+    src/MainWindow.ui
+    resources/res.qrc
     ${TS_FILES}
 )
 

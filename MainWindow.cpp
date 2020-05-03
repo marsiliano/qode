@@ -22,4 +22,7 @@ MainWindow::~MainWindow()
 void MainWindow::open(const QFileInfo &fi)
 {
     m_fsView.setPath(fi.absolutePath());
+    QFile file(fi.absoluteFilePath());
+    file.open(QIODevice::OpenModeFlag::ReadWrite);
+    m_editor.setPlainText(file.readAll());
 }

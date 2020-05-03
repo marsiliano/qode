@@ -7,8 +7,9 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
-    this->setCentralWidget(&m_editor);
-    this->addToolBar(&m_toolbar);
+    setCentralWidget(&m_editor);
+    addToolBar(&m_toolbar);
+    addDockWidget(Qt::DockWidgetArea::LeftDockWidgetArea, &m_fsView);
 }
 
 MainWindow::~MainWindow()

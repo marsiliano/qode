@@ -3,6 +3,7 @@
 #include <QMainWindow>
 #include <QPlainTextEdit>
 
+#include "FileSystemView.hpp"
 #include "ToolBar.hpp"
 
 QT_BEGIN_NAMESPACE
@@ -24,4 +25,5 @@ private:
 
     QPlainTextEdit m_editor;
     ToolBar m_toolbar;
+    FileSystemView m_fsView;
 };

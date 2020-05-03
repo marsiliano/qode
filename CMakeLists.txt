@@ -19,6 +19,8 @@ add_executable(qode
     main.cpp
     ToolBar.cpp
     ToolBar.hpp
+    FileSystemView.cpp
+    FileSystemView.hpp
     MainWindow.cpp
     MainWindow.hpp
     MainWindow.ui

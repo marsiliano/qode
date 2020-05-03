@@ -21,9 +21,14 @@ int main(int argc, char *argv[])
     MainWindow w;
 
     if (a.arguments().size() > 1) {
-        auto f = a.arguments()[1];
-        QFileInfo fileInfo(QDir::currentPath() + QDir::toNativeSeparators("/") + f);
-        if (fileInfo.isFile() && fileInfo.exists()) {
+        const auto f = a.arguments()[1];
+        auto path = QDir::currentPath() + QDir::toNativeSeparators("/");
+        if (f != QStringLiteral(".")) {
+            path += f;
+        }
+
+        QFileInfo fileInfo(path);
+        if (fileInfo.exists()) {
             w.open(fileInfo);
         }
     }

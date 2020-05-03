@@ -2,9 +2,15 @@
 
 FileSystemView::FileSystemView()
 {
-    m_model.setRootPath("");
-    m_model.setOption(QFileSystemModel::DontUseCustomDirectoryIcons);
-    m_model.setOption(QFileSystemModel::DontWatchForChanges);
+    setFeatures(features() & ~QDockWidget::DockWidgetClosable);
+    setFeatures(features() & ~QDockWidget::DockWidgetFloatable);
+
     m_tree.setModel(&m_model);
     setWidget(&m_tree);
+}
+
+void FileSystemView::setPath(const QString &p)
+{
+    m_model.setRootPath(p);
+    m_tree.setRootIndex(m_model.index(p));
 }

@@ -2,6 +2,13 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="qode_en_US">
 <context>
+    <name>QObject</name>
+    <message>
+        <source>Simple editor for general purpose use.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>ToolBar</name>
     <message>
         <source>Quit</source>

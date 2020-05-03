@@ -1,6 +1,8 @@
 #include "MainWindow.hpp"
 #include "./ui_MainWindow.h"
 
+#include <QtDebug>
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -15,4 +17,9 @@ MainWindow::MainWindow(QWidget *parent)
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::open(const QFileInfo &fi)
+{
+    m_fsView.setPath(fi.absolutePath());
 }

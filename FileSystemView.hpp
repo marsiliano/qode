@@ -11,6 +11,8 @@ class FileSystemView final : public QDockWidget
 public:
     FileSystemView();
 
+    void setPath(const QString &p);
+
 private:
     QFileSystemModel m_model;
     QTreeView m_tree;

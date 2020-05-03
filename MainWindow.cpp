@@ -8,6 +8,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
 
     this->setCentralWidget(&m_editor);
+    this->addToolBar(&m_toolbar);
 }
 
 MainWindow::~MainWindow()

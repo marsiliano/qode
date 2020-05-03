@@ -17,9 +17,12 @@ set(TS_FILES qode_en_US.ts)
 
 add_executable(qode
     main.cpp
+    ToolBar.cpp
+    ToolBar.hpp
     MainWindow.cpp
     MainWindow.hpp
     MainWindow.ui
+    res.qrc
     ${TS_FILES}
 )
 

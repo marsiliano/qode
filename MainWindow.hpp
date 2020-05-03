@@ -3,10 +3,12 @@
 #include <QMainWindow>
 #include <QPlainTextEdit>
 
+#include "ToolBar.hpp"
+
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class MainWindow;
-}
+} // namespace Ui
 QT_END_NAMESPACE
 
 class MainWindow : public QMainWindow
@@ -21,4 +23,5 @@ private:
     Ui::MainWindow *ui;
 
     QPlainTextEdit m_editor;
+    ToolBar m_toolbar;
 };

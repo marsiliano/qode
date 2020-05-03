@@ -6,10 +6,11 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+    this->setCentralWidget(&m_editor);
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
 }
-

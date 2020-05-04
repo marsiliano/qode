@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=qode
+Type=Application
+Comment=A simple editor like vscode or vim... 
+Keywords=Editor
+Terminal=false
+Icon=qode
+Exec=qode
+Categories=Qt;

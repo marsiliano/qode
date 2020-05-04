@@ -20,7 +20,8 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow() override;
 
-    void open(const QFileInfo &fi);
+public slots:
+    void open(QString filename);
 
 private:
     Ui::MainWindow *ui;

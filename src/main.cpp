@@ -29,7 +29,7 @@ int main(int argc, char *argv[])
 
         QFileInfo fileInfo(path);
         if (fileInfo.exists()) {
-            w.open(fileInfo);
+            w.open(fileInfo.absoluteFilePath());
         }
     }
 

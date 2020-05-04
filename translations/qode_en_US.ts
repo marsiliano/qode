@@ -18,5 +18,9 @@
         <source>About</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Open</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 </TS>

@@ -12,6 +12,8 @@ MainWindow::MainWindow(QWidget *parent)
     setCentralWidget(&m_editor);
     addToolBar(&m_toolbar);
     addDockWidget(Qt::DockWidgetArea::LeftDockWidgetArea, &m_fsView);
+
+    connect(&m_toolbar, &ToolBar::requestOpen, this, &MainWindow::open);
 }
 
 MainWindow::~MainWindow()
@@ -19,12 +21,22 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::open(const QFileInfo &fi)
+void MainWindow::open(QString filename)
 {
-    m_fsView.setPath(fi.absolutePath());
-    if (fi.isFile()) {
-        QFile file(fi.absoluteFilePath());
-        file.open(QIODevice::OpenModeFlag::ReadWrite);
-        m_editor.setPlainText(file.readAll());
+    if (QFileInfo(filename).isDir()) {
+        m_fsView.setPath(filename);
+        return;
     }
+
+    auto path = filename;
+    const auto i = filename.lastIndexOf('/');
+    path.remove(i, std::distance(filename.begin() + i, filename.end()));
+    m_fsView.setPath(path);
+    QFile f(filename);
+    if (!f.exists()) {
+        return;
+    }
+
+    f.open(QIODevice::OpenModeFlag::ReadWrite);
+    m_editor.setPlainText(f.readAll());
 }

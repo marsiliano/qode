@@ -11,11 +11,13 @@ public:
 
 signals:
     void requestOpen(QString filename);
+    void requestSave();
 
 private slots:
     void quit();
     void about();
     void open();
+    void save();
 
 private:
     enum class Action { Quit, About, Open, Save };

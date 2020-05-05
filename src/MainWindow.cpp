@@ -14,6 +14,7 @@ MainWindow::MainWindow(QWidget *parent)
     addDockWidget(Qt::DockWidgetArea::LeftDockWidgetArea, &m_fsView);
 
     connect(&m_toolbar, &ToolBar::requestOpen, this, &MainWindow::open);
+    connect(&m_toolbar, &ToolBar::requestSave, this, &MainWindow::save);
 }
 
 MainWindow::~MainWindow()
@@ -32,11 +33,20 @@ void MainWindow::open(QString filename)
     const auto i = filename.lastIndexOf('/');
     path.remove(i, std::distance(filename.begin() + i, filename.end()));
     m_fsView.setPath(path);
-    QFile f(filename);
-    if (!f.exists()) {
+    m_currentOpen.setFileName(filename);
+    if (!m_currentOpen.exists()) {
+        qWarning() << filename << "not existes";
         return;
     }
 
-    f.open(QIODevice::OpenModeFlag::ReadWrite);
-    m_editor.setPlainText(f.readAll());
+    m_currentOpen.open(QIODevice::OpenModeFlag::ReadOnly);
+    m_editor.setPlainText(m_currentOpen.readAll());
+    m_currentOpen.close();
+}
+
+void MainWindow::save()
+{
+    m_currentOpen.open(QIODevice::WriteOnly | QIODevice::Truncate);
+    m_currentOpen.write(m_editor.toPlainText().toUtf8());
+    m_currentOpen.close();
 }

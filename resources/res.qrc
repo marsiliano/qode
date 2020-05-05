@@ -2,5 +2,6 @@
     <qresource prefix="/">
         <file>quit.png</file>
         <file>files.png</file>
+        <file>technology.png</file>
     </qresource>
 </RCC>

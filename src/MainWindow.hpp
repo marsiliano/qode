@@ -23,10 +23,14 @@ public:
 public slots:
     void open(QString filename);
 
+private slots:
+    void save();
+
 private:
     Ui::MainWindow *ui;
 
     QPlainTextEdit m_editor;
     ToolBar m_toolbar;
     FileSystemView m_fsView;
+    QFile m_currentOpen;
 };

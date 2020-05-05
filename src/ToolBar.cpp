@@ -22,10 +22,17 @@ ToolBar::ToolBar()
     connect(actOpen.get(), &QAction::triggered, this, &ToolBar::open);
     m_acitons[Action::Open] = std::move(actOpen);
 
+    auto actSave = std::make_unique<QAction>(tr("Save"));
+    actSave->setIcon(QIcon("://technology.png"));
+    actSave->setShortcut(QKeySequence::Save);
+    connect(actSave.get(), &QAction::triggered, this, &ToolBar::save);
+    m_acitons[Action::Save] = std::move(actSave);
+
     setMovable(false);
     setFloatable(false);
     setIconSize(QSize(24, 24));
     addActions({m_acitons.at(Action::Open).get(),
+                m_acitons.at(Action::Save).get(),
                 m_acitons.at(Action::Quit).get(),
                 m_acitons.at(Action::About).get()});
 }
@@ -54,4 +61,9 @@ void ToolBar::open()
     }
 
     emit requestOpen(f);
+}
+
+void ToolBar::save()
+{
+    emit requestSave();
 }

@@ -1,8 +1,8 @@
 #pragma once
 
 #include <QMainWindow>
-#include <QPlainTextEdit>
 
+#include "Editor.hpp"
 #include "FileSystemView.hpp"
 #include "ToolBar.hpp"
 
@@ -29,7 +29,7 @@ private slots:
 private:
     Ui::MainWindow *ui;
 
-    QPlainTextEdit m_editor;
+    Editor m_editor;
     ToolBar m_toolbar;
     FileSystemView m_fsView;
     QFile m_currentOpen;

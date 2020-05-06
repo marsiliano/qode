@@ -17,6 +17,8 @@ set(TS_FILES translations/qode_en_US.ts)
 
 add_executable(qode
     src/main.cpp
+    src/Editor.cpp
+    src/Editor.hpp
     src/ToolBar.cpp
     src/ToolBar.hpp
     src/FileSystemView.cpp

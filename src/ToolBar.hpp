@@ -7,7 +7,7 @@ class ToolBar final : public QToolBar
     Q_OBJECT
 
 public:
-    ToolBar();
+    explicit ToolBar(QWidget *parent = nullptr);
 
 signals:
     void requestOpen(QString filename);

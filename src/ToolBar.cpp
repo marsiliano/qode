@@ -5,7 +5,8 @@
 #include <QMessageBox>
 #include <QtDebug>
 
-ToolBar::ToolBar()
+ToolBar::ToolBar(QWidget *parent)
+    : QToolBar(parent)
 {
     auto actQuit = std::make_unique<QAction>(tr("Quit"));
     actQuit->setIcon(QIcon("://quit.png"));
@@ -47,7 +48,7 @@ void ToolBar::about()
 {
     QMessageBox::information(nullptr,
                              tr("About"),
-                             QString("%1 %2")
+                             QStringLiteral("%1 %2")
                                  .arg(qApp->applicationName())
                                  .arg(qApp->applicationVersion()));
 }

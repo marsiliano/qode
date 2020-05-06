@@ -8,7 +8,7 @@
 
 void prepareStyle()
 {
-    qApp->setStyle(QStyleFactory::create("Fusion"));
+    QApplication::setStyle(QStyleFactory::create(QStringLiteral("Fusion")));
     QPalette darkPalette;
     QColor darkColor = QColor(50, 50, 50);
     QColor disabledColor = QColor(127, 127, 127);
@@ -28,15 +28,15 @@ void prepareStyle()
     darkPalette.setColor(QPalette::Highlight, QColor(42, 130, 218));
     darkPalette.setColor(QPalette::HighlightedText, Qt::black);
     darkPalette.setColor(QPalette::Disabled, QPalette::HighlightedText, disabledColor);
-    qApp->setPalette(darkPalette);
+    QApplication::setPalette(darkPalette);
 }
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    a.setApplicationName(QStringLiteral("qcode"));
-    a.setApplicationVersion(QStringLiteral("0.0.1"));
-    a.setApplicationDisplayName(QStringLiteral("qcode"));
+    QApplication::setApplicationName(QStringLiteral("qcode"));
+    QApplication::setApplicationVersion(QStringLiteral("0.0.1"));
+    QApplication::setApplicationDisplayName(QStringLiteral("qcode"));
     prepareStyle();
 
     QCommandLineParser parser;
@@ -47,8 +47,8 @@ int main(int argc, char *argv[])
 
     MainWindow w;
 
-    if (a.arguments().size() > 1) {
-        const auto f = a.arguments()[1];
+    if (QApplication::arguments().size() > 1) {
+        const auto f = QApplication::arguments()[1];
         auto path = QDir::currentPath() + QDir::toNativeSeparators("/");
         if (f != QStringLiteral(".")) {
             path += f;
@@ -61,5 +61,5 @@ int main(int argc, char *argv[])
     }
 
     w.show();
-    return a.exec();
+    return QApplication::exec();
 }

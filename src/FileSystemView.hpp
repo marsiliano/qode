@@ -9,7 +9,7 @@ class FileSystemView final : public QDockWidget
     Q_OBJECT
 
 public:
-    FileSystemView();
+    explicit FileSystemView(QWidget *parent = nullptr);
 
     void setPath(const QString &p);
 

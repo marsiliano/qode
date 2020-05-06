@@ -9,7 +9,7 @@ Editor::Editor(QWidget *parent)
 {
     connect(this, &Editor::updateRequest, this, &Editor::updateLineNumberArea);
 
-    updateLineNumberAreaWidth(0);
+    updateLineNumberAreaWidth();
 }
 
 void Editor::lineNumberAreaPaintEvent(QPaintEvent *event)
@@ -41,18 +41,13 @@ void Editor::lineNumberAreaPaintEvent(QPaintEvent *event)
     }
 }
 
+constexpr static auto ten = 10;
+constexpr static auto marginForRedability = 5;
+
 int Editor::lineNumberAreaWidth()
 {
-    int digits = 1;
-    int max = qMax(1, blockCount());
-    while (max >= 10) {
-        max /= 10;
-        ++digits;
-    }
-
-    int space = 3 + fontMetrics().horizontalAdvance(QLatin1Char('9')) * digits;
-
-    return space;
+    const auto s = QString::number(blockCount());
+    return marginForRedability + fontMetrics().horizontalAdvance(QLatin1Char('9')) * s.size();
 }
 
 void Editor::resizeEvent(QResizeEvent *event)
@@ -62,17 +57,17 @@ void Editor::resizeEvent(QResizeEvent *event)
     m_lineNumberArea->setGeometry(QRect(cr.left(), cr.top(), lineNumberAreaWidth(), cr.height()));
 }
 
-void Editor::updateLineNumberAreaWidth(int newBlockCount)
+void Editor::updateLineNumberAreaWidth()
 {
     setViewportMargins(lineNumberAreaWidth(), 0, 0, 0);
 }
 
-void Editor::updateLineNumberArea(const QRect &rect, int dy)
+void Editor::updateLineNumberArea(QRect rect, int dy)
 {
     dy ? m_lineNumberArea->scroll(0, dy)
        : m_lineNumberArea->update(0, rect.y(), m_lineNumberArea->width(), rect.height());
 
     if (rect.contains(viewport()->rect())) {
-        updateLineNumberAreaWidth(0);
+        updateLineNumberAreaWidth();
     }
 }

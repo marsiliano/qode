@@ -16,8 +16,8 @@ protected:
     void resizeEvent(QResizeEvent *event) override;
 
 private slots:
-    void updateLineNumberAreaWidth(int newBlockCount);
-    void updateLineNumberArea(const QRect &rect, int dy);
+    void updateLineNumberAreaWidth();
+    void updateLineNumberArea(QRect rect, int dy);
 
 private:
     QWidget *m_lineNumberArea;
@@ -25,6 +25,8 @@ private:
 
 class LineNumberArea : public QWidget
 {
+    Q_OBJECT
+
 public:
     LineNumberArea(Editor *editor)
         : QWidget(editor)

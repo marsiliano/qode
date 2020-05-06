@@ -2,7 +2,8 @@
 
 #include <QHeaderView>
 
-FileSystemView::FileSystemView()
+FileSystemView::FileSystemView(QWidget *parent)
+    : QDockWidget(parent)
 {
     setFeatures(features() & ~QDockWidget::DockWidgetClosable);
     setFeatures(features() & ~QDockWidget::DockWidgetFloatable);

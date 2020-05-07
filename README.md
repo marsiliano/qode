@@ -10,3 +10,5 @@ Every contribute is appreciated :) but I want keep this fast and simple.
 - Dark
 - Filesystem Treeview
 - Line number in editor
+
+![alt text](./docs/screenshot.png)

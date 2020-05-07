@@ -1,4 +1,4 @@
-name: Build CI
+name: linux-CI-CD
 
 on: [push, pull_request]
 

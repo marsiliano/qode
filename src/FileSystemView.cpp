@@ -9,6 +9,7 @@ FileSystemView::FileSystemView(QWidget *parent)
     setFeatures(features() & ~QDockWidget::DockWidgetClosable);
     setFeatures(features() & ~QDockWidget::DockWidgetFloatable);
 
+    m_model.setFilter(QDir::Filter::AllEntries | QDir::Filter::Hidden | QDir::Filter::NoDotAndDotDot);
     m_tree.setModel(&m_model);
     auto headerView = m_tree.header();
     for (auto i = 1; i < headerView->count(); ++i) {

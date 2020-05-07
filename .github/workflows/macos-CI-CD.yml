@@ -1,0 +1,39 @@
+name: macos-CI-CD
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        qt_version: [5.14.2]
+        platform: [macos-latest]
+        arch: [x64]
+      fail-fast: false
+    runs-on: ${{ matrix.platform }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@master
+
+      - name: Cache Qt
+        id: cache-qt
+        uses: actions/cache@v1
+        with:
+          path: ../Qt
+          key: QtCache-${{ matrix.platform }}-${{ matrix.arch }}-${{ matrix.qt_version }}
+
+      - name: Installing Qt
+        uses: jurplel/install-qt-action@v2.6.2
+        with:
+          version: ${{ matrix.qt_version }}
+          arch: ${{ matrix.qtarch }}
+          cached: ${{ steps.cache-qt.outputs.cache-hit }}
+      
+      - name: Build
+        shell: bash
+        run: |
+          mkdir build
+          cd build
+          cmake .. -DCMAKE_INSTALL_PREFIX=./AppDir/usr -DCMAKE_BUILD_TYPE=Release
+          cmake --build .
+          cmake --install .

@@ -24,6 +24,7 @@ public:
 
 public slots:
     void open(QString filename);
+    void openAndSetPath(QString filename);
 
 private slots:
     void save();

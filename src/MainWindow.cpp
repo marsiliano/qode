@@ -14,7 +14,8 @@ MainWindow::MainWindow(QWidget *parent)
     addDockWidget(Qt::DockWidgetArea::LeftDockWidgetArea, &m_fsView);
 
     connect(&m_fsView, &FileSystemView::requestOpen, this, &MainWindow::open);
-    connect(&m_toolbar, &ToolBar::requestOpen, this, &MainWindow::open);
+
+    connect(&m_toolbar, &ToolBar::requestOpen, this, &MainWindow::openAndSetPath);
     connect(&m_toolbar, &ToolBar::requestSave, this, &MainWindow::save);
 }
 
@@ -47,6 +48,12 @@ void MainWindow::open(QString filename)
     m_currentOpen.open(QIODevice::OpenModeFlag::ReadOnly);
     m_editor.setPlainText(m_currentOpen.readAll());
     m_currentOpen.close();
+}
+
+void MainWindow::openAndSetPath(QString filename)
+{
+    setTreeViewPath(filename);
+    open(filename);
 }
 
 void MainWindow::save()

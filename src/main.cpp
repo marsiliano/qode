@@ -49,15 +49,15 @@ int main(int argc, char *argv[])
 
     if (QApplication::arguments().size() > 1) {
         const auto f = QApplication::arguments()[1];
-        auto path = QDir::currentPath() + QDir::toNativeSeparators("/");
-        if (f != QStringLiteral(".")) {
-            path += f;
-        }
-
-        QFileInfo fileInfo(path);
-        if (fileInfo.exists()) {
-            w.setTreeViewPath(fileInfo.absoluteFilePath());
-            w.open(fileInfo.absoluteFilePath());
+        if (QFileInfo fileinfo(f); fileinfo.exists()) {
+            w.openAndSetPath(fileinfo.absoluteFilePath());
+        } else {
+            auto path = QDir::currentPath() + QDir::toNativeSeparators("/");
+            if (f != QStringLiteral(".")) {
+                path += f;
+            }
+            fileinfo.setFile(path);
+            w.openAndSetPath(fileinfo.absoluteFilePath());
         }
     }
 

@@ -13,6 +13,7 @@ MainWindow::MainWindow(QWidget *parent)
     addToolBar(&m_toolbar);
     addDockWidget(Qt::DockWidgetArea::LeftDockWidgetArea, &m_fsView);
 
+    connect(&m_fsView, &FileSystemView::requestOpen, this, &MainWindow::open);
     connect(&m_toolbar, &ToolBar::requestOpen, this, &MainWindow::open);
     connect(&m_toolbar, &ToolBar::requestSave, this, &MainWindow::save);
 }
@@ -22,6 +23,14 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+void MainWindow::setTreeViewPath(QString filename)
+{
+    auto path = filename;
+    const auto i = filename.lastIndexOf('/');
+    path.remove(i, std::distance(filename.begin() + i, filename.end()));
+    m_fsView.setPath(path);
+}
+
 void MainWindow::open(QString filename)
 {
     if (QFileInfo(filename).isDir()) {
@@ -29,10 +38,6 @@ void MainWindow::open(QString filename)
         return;
     }
 
-    auto path = filename;
-    const auto i = filename.lastIndexOf('/');
-    path.remove(i, std::distance(filename.begin() + i, filename.end()));
-    m_fsView.setPath(path);
     m_currentOpen.setFileName(filename);
     if (!m_currentOpen.exists()) {
         qWarning() << filename << "not existes";

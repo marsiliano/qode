@@ -20,6 +20,8 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow() override;
 
+    void setTreeViewPath(QString filename);
+
 public slots:
     void open(QString filename);
 

@@ -56,6 +56,7 @@ int main(int argc, char *argv[])
 
         QFileInfo fileInfo(path);
         if (fileInfo.exists()) {
+            w.setTreeViewPath(fileInfo.absoluteFilePath());
             w.open(fileInfo.absoluteFilePath());
         }
     }

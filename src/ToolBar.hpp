@@ -2,6 +2,10 @@
 
 #include <QToolBar>
 
+#ifdef Q_OS_MACOS
+#include <unordered_map>
+#endif
+
 class ToolBar final : public QToolBar
 {
     Q_OBJECT
